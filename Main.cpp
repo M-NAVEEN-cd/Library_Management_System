@@ -29,6 +29,22 @@ int main()
         }
         case 2:
         {
+            string s;
+            cout<<"ENTER THE BOOK NAME: ";
+            cin>>s;
+            a.update(s);
+            break;
+        }
+        case 3:
+        {
+            string s;
+            cout<<"ENTER THE BOOK NAME: ";
+            cin>>s;
+            a.removeBook(s);
+            break;
+        }
+        case 5:
+        {
             a.displayBooks();
             break;
         }
