@@ -6,9 +6,15 @@ using namespace std;
 int main()
 {
     admin a;
+    Members m;
     bool flag=1;
     while(flag)
     {
+        int type;
+        cout<<"FOR ADMIN PRESS 1 , USER PRESS 2: ";
+        cin>>type;
+        if(type ==1 )
+        {
         int choice;
         cout<<"1.ADD BOOK"<<endl;
         cout<<"2.UPDATE BOOK"<<endl;
@@ -43,9 +49,22 @@ int main()
             a.removeBook(s);
             break;
         }
+        case 4:
+        {
+            string name;
+            cout<<"ENTER THE MEMBER NAME: ";
+            cin>>name;
+            Members m(name);
+            break;
+        }
         case 5:
         {
             a.displayBooks();
+            break;
+        }
+        case 6:
+        {
+            m.displayMembers();
             break;
         }
         case 7:
@@ -58,4 +77,8 @@ int main()
         }
         cout<<"----------------------------------------------------------------------"<<endl;
     }
+    else{
+        flag=0;
+    }
+}
 }

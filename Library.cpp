@@ -117,14 +117,15 @@ class admin:public Library
     }
 };
 
-class Members:public Library
+class Members:public admin
 {
     public:
     int member_id;
     string name;
     int borrowedCount=0;
     static int cnt;
-    static map<int,vector<book>>memberList;
+    static map<int,vector<book>>memberBook;
+    static map<int,Members>memberList;
 
     Members()
     {
@@ -134,10 +135,28 @@ class Members:public Library
     {
         this->member_id=cnt++;
         this->name=name;
-        memberList[member_id]={};
+        memberList[member_id]=*this;
     }
 
-
+    void borrowBook(int id)
+    {
+        for(int i=0;i<books.size();i++)
+        {
+            if(id == books[i].bookId)
+            {
+                memberBook[this->member_id].push_back(books[i]);
+                removeBook(books[i].bookName);
+            }
+        }
+    }
+    void displayMembers()
+    {
+        for(auto& m:memberList)
+        {
+            cout<<m.first<<"    "<<m.second.name<<endl;
+        }
+    }
 };
-map<int,vector<book>> Members::memberList;
+map<int,vector<book>> Members::memberBook;
+map<int,Members> Members::memberList;
 int Members::cnt=1;
